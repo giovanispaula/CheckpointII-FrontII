@@ -1,0 +1,148 @@
+/* RESET DAFAULT STYLE */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+/* BASE */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antializased;
+  margin: 1rem;
+}
+
+h3 {
+  font-size: .75rem;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+#logo-1 {
+  width: 3.5rem;
+}
+
+.dark-mode {
+  width: 2.5rem;
+}
+
+.Cards-section {
+  display: inline-block;
+  display: flex;
+  /* height: 50vh; */
+}
+
+.Card-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5rem;
+  width: 10rem;
+  height: 10rem;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+}
+
+#Add-logo {
+  width: 3.5rem;
+}
+
+#add-button {
+  width: 10rem;
+  height: 10rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  width: 10rem;
+  margin: .5rem;
+  justify-content: space-between;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  border-radius: 0.5rem;
+  width: 10rem;
+  height: fit-content;
+}
+
+.card .header-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: .5rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+}
+
+.edit-icon {
+  width: 1.5rem;
+}
+
+.card-description {
+  align-items: left;
+  justify-content: left;
+}
+
+#addCardContainer {
+  display: none;
+  width: 18rem;
+  padding: 1rem;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.15);
+  transition: all .25s ease-in-out;
+  border-radius: 0.5rem;
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -150px;
+  margin-top: -100px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form #description {
+  height: 6rem;
+}
+
+#btn-addTask, #btnHide {
+  width: 7.75rem;
+}
