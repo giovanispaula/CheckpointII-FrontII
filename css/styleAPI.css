@@ -1,0 +1,86 @@
+/* RESET DAFAULT STYLE */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* BASE */
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antializased;
+  margin: 1rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+#logo-1 {
+  width: 3.5rem;
+}
+
+#dark-mode {
+  width: 1.75rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  margin: 1em auto 1em auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  width: 12%;
+  margin: .5rem;
+  padding: 2em;
+  text-align: center;
+  margin: 1em auto;
+}
+
+.cards-section {
+  display: grid;
+  /* grid-template-columns: 20rem 20rem; */
+}
+
+.riscado {
+  text-decoration: line-through;
+}

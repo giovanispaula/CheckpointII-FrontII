@@ -21,6 +21,24 @@ img {
 
 /* BASE */
 
+#addCardContainer {
+  /* pop-up */
+  display: none;
+  width: 18rem;
+  padding: 1rem;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.15);
+  transition: all .25s ease-in-out;
+  border-radius: 0.5rem;
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -150px;
+  margin-top: -100px;
+  background: rgb(255, 255, 255);
+  color: black;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -33,7 +51,7 @@ body {
 }
 
 h3 {
-  font-size: .75rem;
+  font-size: 1.25rem;
 }
 
 #header {
@@ -48,26 +66,21 @@ h3 {
   width: 3.5rem;
 }
 
-.dark-mode {
-  width: 2.5rem;
-}
-
-.Cards-section {
-  display: inline-block;
-  display: flex;
-  /* height: 50vh; */
+#dark-mode {
+  width: 1.75rem;
 }
 
 .Card-add {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   padding: .5rem;
-  width: 10rem;
   height: 10rem;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
   border-radius: 0.5rem;
   margin: 0.5rem;
+  width: 12%;
 }
 
 #Add-logo {
@@ -81,57 +94,25 @@ h3 {
 
 .card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: .5rem;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
   border-radius: 0.5rem;
-  width: 10rem;
+  width: 50%;
   margin: .5rem;
-  justify-content: space-between;
+  padding: 2em;
+  text-align: center;
+  margin: 1em auto;
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  border-radius: 0.5rem;
-  width: 10rem;
-  height: fit-content;
-}
-
-.card .header-card {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: .5rem;
-}
-
-.card-title {
-  font-size: 1.25rem;
-}
-
-.edit-icon {
+#done, #delete {
   width: 1.5rem;
+  cursor: pointer;
 }
 
-.card-description {
-  align-items: left;
-  justify-content: left;
-}
-
-#addCardContainer {
-  display: none;
-  width: 18rem;
-  padding: 1rem;
-  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.15);
-  transition: all .25s ease-in-out;
-  border-radius: 0.5rem;
-  z-index: 100;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -150px;
-  margin-top: -100px;
+img {
+  width: 100%;
+  height: auto;
 }
 
 form {
@@ -139,10 +120,12 @@ form {
   flex-direction: column;
 }
 
-form #description {
-  height: 6rem;
+button {
+  display: flex;
+  justify-content: center;
+  margin: 1em auto 1em auto;
 }
 
-#btn-addTask, #btnHide {
-  width: 7.75rem;
+.riscado {
+  text-decoration: line-through;
 }

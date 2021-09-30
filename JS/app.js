@@ -1,64 +1,103 @@
-let today = new Date().toLocaleString('pt-BR').substr(0, 10) // Setando dia atual como data de criação do card.
-let actualDate = (document.getElementById('actualDate').value = today)
+// Declaração de variáveis
+const form = document.querySelector('form')
+const initalDate = document.querySelector('.initialDate')
+const limitDate = document.querySelector('.limitDate')
+const descricaoTodo = document.querySelector('.descricaoTodo')
+const btnSubmit = document.querySelector('.btnSubmit')
+const listaTodos = document.querySelector('.listaTodos')
+let todos = []
+let keyLocalStorage = 'info'
 
-let form = document.getElementById('form') // Evitando o evento padrão do Submit form para que se façam as verificações;
-form.addEventListener('submit', e => (e.preventDefault(), e.createCard(form)))
+//Pegando as data atual
+let newDate = new Date()
+let today = newDate.toLocaleString('pt-BR').substr(0, 10)
+initalDate.value = today
 
-function validate(form) {
-  // função para validade entrada de dados.
-  if (form.description.lenght <= 10) {
-    alert('A descrição deve ter mais de 10 caracteres!')
-    form.description.focus()
-    return false
-  }
-  if (finalDate < actualDate) {
-    alert('A data final não pode ser anterio a data atual!')
-    form.finalDate.focus()
-    return false
-  }
-
-  return true
+//quando a pagina carregar, renderiza as informacoes do local storage
+window.onload = () => {
+  carregarInfoLocalStorage()
 }
 
-function createCard(form) {
-  // Função para criação dos eventos.
-  let title = document.getElementById('title').value // armazenando dados do input dentro de variavel
-  let description = document.getElementById('description').value // armazenando dados do input dentro de variavel
-  let finalDate = document.getElementById('finalDate').value // armazenando dados do input dentro de variavel
-  finalDate = finalDate.split('-').reverse().join('/') // Convertendo padrão americano de data em padrão brasileiro
+//validação de dados e armazenamento de valores dos inputs
+btnSubmit.addEventListener('click', e => {
+  e.preventDefault()
+  console.log(newDate.value, limitDate.value)
+  if (limitDate.value === '')
+    return alert('Favor inserir a data limite da tarefa!')
+  if (descricaoTodo.value.length < 10)
+    return alert(
+      'Favor inserir a descrição da tarefa com mais de 10 caracteres'
+    )
+  let limitDateValor = limitDate.value.split('-')
+  limitDateValor = limitDateValor.reverse()
+  limitDateValor = limitDateValor.toString().replace(',', '/')
+  limitDateValor = limitDateValor.replace(',', '/')
 
-  if (validate(form) == false) {
-    // chamando a função de validação de dados
-    return false
+  let tarefa = {
+    descricao: descricaoTodo.value,
+    dataLimite: limitDateValor
   }
+  //colocando informações no array de tasks
 
-  let cardSection = document.querySelector('.cards-section') // Criando variável para receber o grid-container
-  cardSection.innerHTML += `<div class="card">
-  <div class="header-card">
-  <h2 class="card-title">${title}</h2>
-  <a href="#"
-  ><img src="./icons/edit.svg" alt="Edit icon" class="edit-icon"
-  /></a>
-  </div>
-  
-  <p class="card-description">${description}</p>
-  <div class="main">
-  <h3 class="create-date">Criado em: ${actualDate}</h3>
-      <h3 class="Deadline-date">Prazo final: ${finalDate}</h3>
-      </div>
-      `
-  document.getElementById('form').reset()
+  todos.push(tarefa)
+  adicionarLocalStorage(tarefa)
+  carregarInfoLocalStorage()
+  //esvaziando inputs
+  limitDate.value = ''
+  descricaoTodo.value = ''
+
   document.getElementById('addCardContainer').style.display = 'none'
-}
-
-let btnHide = document.getElementById('btnHide')
-btnHide.addEventListener('click', event => {
-  event.preventDefault(),
-    (document.getElementById('addCardContainer').style.display = 'none')
 })
 
+//Adição de informações no local Storage em JSON
+let adicionarLocalStorage = obj => {
+  let infoLocalStorage = localStorage.getItem(keyLocalStorage)
+  if (infoLocalStorage !== null) {
+    todos = JSON.parse(infoLocalStorage)
+  }
+  todos.push(obj)
+  localStorage.setItem(keyLocalStorage, JSON.stringify(todos))
+}
+
+//Renderização de informações do Local Storage
+let carregarInfoLocalStorage = () => {
+  let infoLocalStorage = localStorage.getItem(keyLocalStorage)
+  if (infoLocalStorage !== null) {
+    todos = JSON.parse(infoLocalStorage)
+    console.log(todos)
+  }
+  let dataToUse = todos.map((x, y) => {
+    return `<li class="card">${x.descricao} ${x.dataLimite}
+                   <button class="terminar" onclick="terminar(${y})"><img src="./icons/done.svg" id="done"></button>
+                   <button onclick="excluir(${y})"><img src="./icons/erase.svg" id="delete"></button>
+                   </li> `
+  })
+  listaTodos.innerHTML = ''
+  listaTodos.innerHTML += dataToUse
+}
 let btnShow = document.querySelector('.Add-Button')
 btnShow.addEventListener('click', event => {
   event.preventDefault(),
     (document.getElementById('addCardContainer').style.display = 'block')
 })
+
+//Função para exclusão de task
+function excluir(int) {
+  if (confirm('Tem certeza que deseja deletar este item?')) {
+    let infoLocalStorage = localStorage.getItem(keyLocalStorage)
+    todos = JSON.parse(infoLocalStorage)
+    todos.splice(int, 1)
+    localStorage.setItem(keyLocalStorage, JSON.stringify(todos))
+
+    carregarInfoLocalStorage()
+  }
+}
+
+//Função para finalizar uma tarefa, a qual ficará riscada.
+function terminar(y) {
+  let index = y
+  let infoLocalStorage = localStorage.getItem(keyLocalStorage)
+  todos = JSON.parse(infoLocalStorage)
+  const li = document.querySelectorAll('li')
+  li[index].classList.add('riscado')
+}
